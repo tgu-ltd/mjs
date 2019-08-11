@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+twine = "*"
+wheel = "*"
+python-semantic-release = "*"
+tox = "*"
+
+[packages]
+paho-mqtt = "==1.4.0"
+
+[requires]
+python_version = "3.6"
