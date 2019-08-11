@@ -1,7 +1,7 @@
 import os
 import pytest
 import sqlite3
-from mqtt2sql.mqtt import Mqtt
+from mjs.mqtt import Mqtt
 
 
 @pytest.fixture(scope="session")
@@ -13,7 +13,7 @@ def broker():
 
 
 @pytest.fixture(scope="session")
-def m2s():
+def mjs():
     m = Mqtt(
         logfile='./testbase.log',
         dbfile='./testbase.db'
@@ -28,8 +28,8 @@ def m2s():
 
 
 @pytest.fixture(scope="session")
-def dbc(m2s):
-    dbfile = m2s.config.get('dbfile')
+def dbc(mjs):
+    dbfile = mjs.config.get('dbfile')
     conn = sqlite3.connect(dbfile)
     c = conn.cursor()
     yield c

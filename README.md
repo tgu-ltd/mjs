@@ -1,23 +1,23 @@
-# mqtt2sql
+# mjs
 A python module that stores mqtt messages into sqlite3 tables
 
 ## Intended Audience
 Hobbyists who wants to quickly store mqtt message into a sqlite3 database without having to muck about in hyperspace  
 
 ## Installing
-~$ git clone git@github.com:tgu-ltd/mqtt2sql.git
-~$ cd mqtt2sql
+~$ git clone git@github.com:tgu-ltd/mjs.git
+~$ cd mjs
 ~$ pip setup.py install --user 
-~$ m2s help
+~$ mjs help
 
 ## Using
-~$ m2s help
-~$ m2s server 192.168.5.1 topics "#"
-~$ m2s server 192.168.5.1 loglevel debug logtocon true topics "#"
+~$ mjs help
+~$ mjs server 192.168.5.1 topics "#"
+~$ mjs server 192.168.5.1 loglevel debug logtocon true topics "#"
 
 ## Storing and retrieving data
 ```bash
-~$ m2s server 192.168.5.1 port 1883 topics "gps,solar" dbfile "./solar_gps.db" &
+~$ mjs server 192.168.5.1 port 1883 topics "gps,solar" dbfile "./solar_gps.db" &
 ~$ sqlite ./solar_gps.db
 sqlite> select _ts, V, VPV, VPV_min, VPV_max from solar;
 1565383183.30413|12550|96|80|140
@@ -33,7 +33,7 @@ This example assumes that a mqtt broker is serving on 127.0.0.1 port 1883.
 If we now run this command ...
 
 ```bash
-~$ m2s topics "#" &
+~$ mjs topics "#" &
 ```
 
 A mqtt client will start listing for all topics on ip:port 127.0.0.1:1883. 

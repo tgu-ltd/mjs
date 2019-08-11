@@ -3,9 +3,9 @@ import time
 import json
 
 
-def publish(m2s, msg, topic):
-    server = m2s.config.get('server')
-    port = m2s.config.get('port')
+def publish(mjs, msg, topic):
+    server = mjs.config.get('server')
+    port = mjs.config.get('port')
     os.system("mosquitto_pub -h {0} -p {1} -t {2} -m '{3}'".format(
         server,
         port,
@@ -31,7 +31,7 @@ def select_col_val(dbc, col, val, table):
     return found
 
 
-def test_table_adjusts_to_new_columns(m2s, dbc):
+def test_table_adjusts_to_new_columns(mjs, dbc):
     col_one = 'col_1'
     col_two = 'col_2'
     row_one_value = 1
@@ -40,10 +40,10 @@ def test_table_adjusts_to_new_columns(m2s, dbc):
     second_message_stored = False
     topic = 'test_setup_adjustable'
 
-    publish(m2s, {col_one: row_one_value}, topic)
+    publish(mjs, {col_one: row_one_value}, topic)
     first_message_stored = select_col_val(dbc, col_one, row_one_value, topic)
 
-    publish(m2s, {col_two: row_two_value}, topic)
+    publish(mjs, {col_two: row_two_value}, topic)
     second_message_stored = select_col_val(dbc, col_two, row_two_value, topic)
 
     time.sleep(1)

@@ -4,8 +4,8 @@ import logging
 import traceback
 from threading import Thread
 import paho.mqtt.client as mqttc
-from mqtt2sql.sql import Sql
-from mqtt2sql.config import Config
+from mjs.sql import Sql
+from mjs.config import Config
 
 ''' Things to consider
     See: https://github.com/eclipse/paho.mqtt.python#connect-reconnect-disconnect

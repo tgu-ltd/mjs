@@ -2,7 +2,7 @@ import sys
 import json
 import socket
 import logging
-import mqtt2sql.logger as logger
+import mjs.logger as logger
 
 
 class Config(object):
@@ -49,8 +49,8 @@ class Config(object):
             "logtocon": False,
             "loglevel": "WARNING",
             "server": "127.0.0.1",
-            "logfile": "./m2s.log",
-            "dbfile": "./m2s.db",
+            "logfile": "./mjs.log",
+            "dbfile": "./mjs.db",
             "logformat": "%(asctime)-15s %(message)s"
         }
 

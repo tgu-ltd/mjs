@@ -16,21 +16,21 @@ def test_mqtt_broker_started(broker):
 
 
 @pytest.mark.third
-def test_mqtt2sql_started(m2s):
-    db_file = Path(m2s.config.get('dbfile'))
-    log_file = Path(m2s.config.get('logfile'))
+def test_mjs_started(mjs):
+    db_file = Path(mjs.config.get('dbfile'))
+    log_file = Path(mjs.config.get('logfile'))
     assert(db_file.is_file() is True)
     assert(log_file.is_file() is True)
 
 
 @pytest.mark.fourth
-def test_mqtt_messages_are_stored_in_sqlite(m2s, dbc):
+def test_mqtt_messages_are_stored_in_sqlite(mjs, dbc):
     row_value = 'value'
     topic = 'test_setup'
     column_name = 'column'
     msg = {column_name: row_value}
-    port = m2s.config.get('port')
-    server = m2s.config.get('server')
+    port = mjs.config.get('port')
+    server = mjs.config.get('server')
     os.system("mosquitto_pub -h {0} -p {1} -t {2} -m '{3}'".format(
         server,
         port,
