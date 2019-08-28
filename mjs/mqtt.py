@@ -27,7 +27,6 @@ class Mqtt(Thread):
 
         # Start all other objects
         self.logger = logging.getLogger()
-
         self.database = Sql(config=self.config)
 
         # Setup topics to listen too, default is '#'=all
@@ -57,17 +56,14 @@ class Mqtt(Thread):
             self.topics
         )
         self.logger.info(msg)
-        print(msg)
+        if not self.config.get('logtocon', False):
+            print(msg)
 
     def connect(self):
         logging.debug('Connecting to MQTT server')
         self.client.on_message=self.on_message
         self.client.subscribe(self.topics)
         return self
-
-    def run(self):
-        while self.running:
-            time.sleep(2)
 
     def stop(self):
         self.running = False

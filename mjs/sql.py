@@ -27,7 +27,8 @@ class Sql(object):
 
         msg = "Loading database {0}".format(self.dbfile)
         self.logger.info(msg)
-        print(msg)
+        if not config.get('logtocon', True):
+            print(msg)
 
         # On startup cache tables
         with self:

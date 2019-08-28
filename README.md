@@ -37,7 +37,7 @@ If we now run this command ...
 ```
 
 A mqtt client will start listing for all topics on ip:port 127.0.0.1:1883. 
-If we send a message to a mqtt server like this ...
+If we send a message to a mqtt server like thus ...
 
 ```bash 
 ~$ mosquitto_pub --host 127.0.0.1 --port 1883 -t solar_panel -m '{"volts": 13.2}'
@@ -68,16 +68,6 @@ CREATE TABLE solar_panel (_ts REAL PRIMARY KEY,volts REAL);
 
 ## Good bits and bad bits
 
-### Cons
-* No encryption
-* Needs auto documentation
-* Will only work when mqtt messages are in json format
-* No relationships between tables
-* DBA's should turn away now. 
-*.. No normalization on these tables
-*.. Each table entry has a timestamped primary key. Make sure your ntp is working :) 
-* Name change required to "q2q"
-
 ### Pros
 * Listen to one or many mqtt topics
 * Quick capture and analysis 
@@ -90,3 +80,13 @@ CREATE TABLE solar_panel (_ts REAL PRIMARY KEY,volts REAL);
 ## Future development
 * Need to use tox
 * Need to use python-semantic-release
+
+### Cons
+* No encryption
+* Needs auto documentation
+* Will only work when mqtt messages are in json format
+* No relationships between tables
+* DBA's should turn away now. 
+*.. No normalization on these tables
+*.. Each table entry has a timestamped primary key. Make sure your ntp is working :) 
+
