@@ -14,38 +14,38 @@ def publish(mjs, msg, topic):
     ))
 
 
-def select_col_val(dbc, col, val, table):
-    found = False
-    sqlval = val
-    if type(val) == str:
-        sqlval = "'{0}'".format(val)
-    for i in range(5):
-        time.sleep(1)
-        dbc.execute('SELECT {0} FROM {1} WHERE {0} = {2}'.format(
-            col, table, col, sqlval
-        ))
-        result = dbc.fetchone()[0]
-        if val == result:
-            found = True
-            break
-    return found
+def run_sql(dbc, sql):
+    results = []
+    time.sleep(2)  # Wait for db to get the message
+    dbc.execute(sql)
+    rows = dbc.fetchall()
+    for result in rows:
+        results.append(result[0])
+    return results
 
 
 def test_table_adjusts_to_new_columns(mjs, dbc):
-    col_one = 'col_1'
-    col_two = 'col_2'
+    col = 'column'
     row_one_value = 1
-    row_two_value = '2'
+    row_two_value = 'z'
+    row_three_value = 3
     first_message_stored = False
     second_message_stored = False
+    third_message_stored = False
     topic = 'test_setup_adjustable'
 
-    publish(mjs, {col_one: row_one_value}, topic)
-    first_message_stored = select_col_val(dbc, col_one, row_one_value, topic)
+    publish(mjs, {col: row_one_value}, topic)
+    sql = 'SELECT {0} FROM {1}'.format(col, topic)
+    first_message_stored = row_one_value in run_sql(dbc, sql)
 
-    publish(mjs, {col_two: row_two_value}, topic)
-    second_message_stored = select_col_val(dbc, col_two, row_two_value, topic)
+    publish(mjs, {col: row_two_value}, topic)
+    sql = 'SELECT {0} FROM {1}'.format(col, topic)
+    second_message_stored = row_two_value in run_sql(dbc, sql)
 
-    time.sleep(1)
+    publish(mjs, {col: row_three_value}, topic)
+    sql = 'SELECT {0} FROM {1}'.format(col, topic)
+    third_message_stored = row_three_value in run_sql(dbc, sql)
+
     assert(first_message_stored is True)
     assert(second_message_stored is True)
+    assert(third_message_stored is True)
