@@ -21,14 +21,14 @@ analysis.
 ~$ mjs server 192.168.5.1 loglevel debug logtocon true topics "#"
 ```
 
-This example assumes that a mqtt broker is serving on 127.0.0.1 port 1883. 
+This below example assumes that a mqtt broker is serving on 127.0.0.1 port 1883. 
 If we now run this command ...
 
 ```bash
 ~$ mjs topics "#"
 ```
 
-A mqtt client will start listing for all topics on ip:port 127.0.0.1:1883. 
+A mqtt client will start listening for all topics on ip:port 127.0.0.1:1883. 
 If we send a message to a mqtt server like thus ...
 
 ```bash 
