@@ -16,13 +16,12 @@ def broker():
 def mjs():
     m = Mqtt(
         logfile='./testbase.log',
-        dbfile='./testbase.db'
+        dbfile='./testbase.db',
+        forever=False
     )
     m.connect()
-    m.start()
     yield m
-    m.stop()
-    m.join()
+    m.disconnect()
     os.remove(m.config.get('dbfile'))
     os.remove(m.config.get('logfile'))
 

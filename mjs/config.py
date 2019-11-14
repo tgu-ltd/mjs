@@ -51,6 +51,7 @@ class Config(object):
             "server": "127.0.0.1",
             "logfile": "./mjs.log",
             "dbfile": "./mjs.db",
+            "forever": True,
             "logformat": "%(asctime)-15s %(message)s"
         }
 

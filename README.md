@@ -6,14 +6,20 @@ Hobbyists who want to quickly store json messages sent via mqtt into a sqlite da
 analysis.
 
 ## Installing
-~$ git clone git@github.com:tgu-ltd/mjs.git
+```bash
+~$ git clone https://github.com/tgu-ltd/mjs.git
 ~$ cd mjs
-~$ pip setup.py install --user 
+~$ pipenv install
+~$ pipenv shell
+~$ pip install -e .
+```
 
 ## Using
+```bash
 ~$ mjs help
 ~$ mjs server 192.168.5.1 topics "#"
 ~$ mjs server 192.168.5.1 loglevel debug logtocon true topics "#"
+```
 
 
 ## Starting and using
@@ -66,6 +72,12 @@ sqlite> select _ts, V, VPV, VPV_min, VPV_max from solar where VPV > 79;
 1565383242.29581|12550|80|
 ```
 
+
+## Testing
+```bash 
+~$ python setup.py test
+```
+
 ## Good bits and bad bits
 
 ### Pros
@@ -74,7 +86,6 @@ sqlite> select _ts, V, VPV, VPV_min, VPV_max from solar where VPV > 79;
 * Auto creates tables
 * Maps mqtt topics to sqlite tables
 * Auto adjusts tables for new mqtt message keys 
-* Databases get reused and not overwritten if the application restarts
 
 
 ### Cons
@@ -88,14 +99,8 @@ sqlite> select _ts, V, VPV, VPV_min, VPV_max from solar where VPV > 79;
 *.. Each table entry has a timestamped primary key. Make sure your ntp is working :) 
 
 ### Todo's
+* Use tox
 * Convert flat, non json messages, into tables
 * Build tables relationship for nested json structures
-* Need to use tox
-* Need to use python-semantic-release
-
-
-## To test
-```bash 
-~$ python setup.py test
-```
+* Use python-semantic-release
 

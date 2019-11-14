@@ -1,23 +1,19 @@
 import json
-import time
 import logging
 import traceback
-from threading import Thread
 import paho.mqtt.client as mqttc
-from mjs.sql import Sql
 from mjs.config import Config
+from mjs.sql import Sql
 
 ''' Things to consider
     See: https://github.com/eclipse/paho.mqtt.python#connect-reconnect-disconnect
 '''
 
 
-class Mqtt(Thread):
+class Mqtt():
 
     def __init__(self, **kwargs):
         '''  A threaded class to listen for mqtt messages '''
-        Thread.__init__(self)
-        self.running = True
         self.topics = []
 
         # CLI args will overide any kwargs
@@ -40,13 +36,12 @@ class Mqtt(Thread):
 
         # Setup and start the mqtt client
         self.client=mqttc.Client()
-        self.client.connect(
-            self.config.get('server', '127.0.0.1'),
-            self.config.get('port', '1823'),
-            self.config.get('timeout', 60)
-        )
-        self.__log_start()
-        self.client.loop_start()
+        self.client.on_message=self.on_message
+        self.client.on_connect = self.on_connect
+
+    def on_connect(self, client, userdata, flags, rc):
+        ''' Mehthod defined as per paho instructions '''
+        self.logger.debug("Connected with result code " + str(rc))
 
     def __log_start(self):
         ''' Log the start of the mqtt listener '''
@@ -60,13 +55,21 @@ class Mqtt(Thread):
             print(msg)
 
     def connect(self):
+        '''  Connect, Subscribe and loop the mqtt connection '''
         logging.debug('Connecting to MQTT server')
-        self.client.on_message=self.on_message
+        self.client.connect(
+            self.config.get('server', '127.0.0.1'),
+            keepalive=self.config.get('timeout', 60),
+            port=self.config.get('port', 1883),
+        )
+        self.__log_start()
         self.client.subscribe(self.topics)
-        return self
+        if self.config.get('forever'):
+            self.client.loop_forever()
+        else:
+            self.client.loop_start()
 
-    def stop(self):
-        self.running = False
+    def disconnect(self):
         self.client.loop_stop()
         self.client.disconnect()
 
