@@ -90,9 +90,12 @@ sqlite> select _ts, V, VPV, VPV_min, VPV_max from solar where VPV > 79;
 ### Todo's
 * Convert flat, non json messages, into tables
 * Build tables relationship for nested json structures
-
-
-
-## Future development
 * Need to use tox
 * Need to use python-semantic-release
+
+
+## To test
+```bash 
+~$ python setup.py test
+```
+

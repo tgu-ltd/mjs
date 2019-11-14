@@ -82,6 +82,12 @@ class Sql(object):
             sql = '{0} {1},'.format(key, ftype)
             sql_columns = sql_columns + sql
         sql_columns = sql_columns[:-1]
+
+        if len(sql_columns) < 1:
+            msg = "No columns to create table. Is the mqtt message in json format?"
+            self.logger.error(msg)
+            raise ValueError(msg)
+
         sql = 'CREATE TABLE {0} (_ts REAL PRIMARY KEY,'.format(tablename)
         sql = sql + sql_columns + ');'
         self.logger.debug(sql)
@@ -114,7 +120,11 @@ class Sql(object):
             k = k.replace("'", '').replace('"', '')
             k = k.replace('$', '').replace('!', '')
             k = k.replace('&', '').replace('*', '')
-            data[k] = msg[key]
+            try:
+                data[k] = msg[key]
+            except TypeError as e:
+                self.logger.exception("TypeError: {0}, {1}, {2}".format(e, msg, k))
+                pass
         return data
 
     def save(self, tablename, msg):
