@@ -14,15 +14,13 @@ analysis.
 ~$ pip install -e .
 ```
 
-## Using
+## Examples
 ```bash
 ~$ mjs help
 ~$ mjs server 192.168.5.1 topics "#"
 ~$ mjs server 192.168.5.1 loglevel debug logtocon true topics "#"
 ```
 
-
-## Starting and using
 This example assumes that a mqtt broker is serving on 127.0.0.1 port 1883. 
 If we now run this command ...
 
