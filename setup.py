@@ -16,7 +16,10 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     keywords='mqtt sqlite',
-    entry_points={'console_scripts': ['mjs=mjs.cli:start']},
+    entry_points={'console_scripts': [
+        'mjs=mjs.cli:start',
+        'jfts=mjs.cli:filestosql'
+    ]},
     include_package_data=True,
     description='Store mqtt message into a sqlite database',
     long_description='Store mqtt json messages into a sqlite database.',

@@ -69,8 +69,9 @@ class Sql(object):
         # Gather column information
         for key in columns:
             ftype = self.__get_column_type(columns[key])
-            keys.append(key)
-            types.append(ftype)
+            if '_ts' not in key:
+                keys.append(key)
+                types.append(ftype)
 
         # To test table alter
         # keys = keys[:-1]
@@ -107,32 +108,50 @@ class Sql(object):
                     key,
                     ftype
                 )
-                self.cur.execute(sql)
-                self.con.commit()
-                altered = True
+                try:
+                    self.cur.execute(sql)
+                    self.con.commit()
+                    altered = True
+                except (ValueError, sqlite3.OperationalError, sqlite3.IntegrityError) as e:
+                    msg = "Alter Table Error: {0}\n {1}".format(str(e), sql)
+                    self.logger.debug(msg)
+                    pass
         return altered
 
     def __clean_msg_keys(self, msg):
         # Remove bad key chars from the msg
         data = {}
         for key in msg:
-            k = key.replace('#', '').replace('%', '')
+            k = bytes(key, 'ascii').decode('ascii', 'ignore')
+            k = k.replace('#', '').replace('%', '')
             k = k.replace("'", '').replace('"', '')
             k = k.replace('$', '').replace('!', '')
             k = k.replace('&', '').replace('*', '')
+            k = k.replace('\\u', '').strip().rstrip()
+            if (len(k) < 1) or ('\\u' in k) or (k ==''):
+                raise ValueError("Badly formed Key. Not able to create column name")
             try:
-                data[k] = msg[key]
-            except TypeError as e:
-                self.logger.exception("TypeError: {0}, {1}, {2}".format(e, msg, k))
-                pass
+                k = int(k)
+            except ValueError as e:
+                if 'invalid literal for int' not in str(e):
+                    raise ValueError(str(e))
+            data[k] = msg[key]
+            if msg[key] is None:
+                data[k] = ''
+            if type(msg[key]) == str:
+                data[k] = bytes(msg[key], 'ascii').decode('ascii', 'ignore').strip().rstrip()
         return data
 
     def save(self, tablename, msg):
         # Check the table exists. If not create it
         # If it does check to see if it needs altering
         # Once the checks have been done insert the data
+        data = {}
+        try:
+            data = self.__clean_msg_keys(msg)
+        except ValueError:
+            return
 
-        data = self.__clean_msg_keys(msg)
         table = self._tables.get(tablename)
         if table is None:
             self._create_table(tablename, data)
@@ -150,7 +169,8 @@ class Sql(object):
         sql_cols = ''
         sql_vals = ' VALUES ('
         sql = 'INSERT INTO {0} ('.format(tablename)
-        data['_ts'] = time.time()
+        if data.get('_ts', None) is None:
+            data['_ts'] = time.time()
         for key in data:
             sql_cols = sql_cols + '{0},'.format(key)
             if type(data[key]) == str:
@@ -162,6 +182,11 @@ class Sql(object):
         sql_vals = sql_vals[:-1] + ');'
         sql = sql + sql_cols + sql_vals
         self.logger.debug(sql)
+        try:
+            self.cur.execute(sql)
+            self.con.commit()
+        except (ValueError, sqlite3.IntegrityError, sqlite3.OperationalError) as e:
+            msg = "Insert row Error: {0}\n {1}".format(str(e), sql)
+            self.logger.debug(msg)
+            pass
         self.logger.info("{0} data saved".format(tablename))
-        self.cur.execute(sql)
-        self.con.commit()
