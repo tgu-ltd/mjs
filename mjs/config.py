@@ -47,7 +47,7 @@ class Config(object):
             "logmode": "w",
             "host": self.host,
             "logtocon": False,
-            "loglevel": "WARNING",
+            "loglevel": "ERROR",
             "server": "127.0.0.1",
             "logfile": "./mjs.log",
             "dbfile": "./mjs.db",

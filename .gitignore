@@ -6,6 +6,7 @@
 /build/
 
 *.db
+*.db-journal
 *.log
 
 # Python egg metadata, regenerated from source files by setuptools.

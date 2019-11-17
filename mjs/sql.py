@@ -73,10 +73,6 @@ class Sql(object):
                 keys.append(key)
                 types.append(ftype)
 
-        # To test table alter
-        # keys = keys[:-1]
-        # types = types[:-1]
-
         # Create the table creation string
         sql_columns = ''
         for key, ftype in zip(keys, types):
@@ -101,7 +97,7 @@ class Sql(object):
         altered = False
         for key in data:
             if key not in self._tables[tablename]:
-                self.logger.debug("Altering table {0}".format(tablename))
+                self.logger.info("Altering table {0}".format(tablename))
                 ftype = self.__get_column_type(data[key])
                 sql = 'ALTER TABLE {0} ADD COLUMN {1} {2};'.format(
                     tablename,
@@ -114,32 +110,36 @@ class Sql(object):
                     altered = True
                 except (ValueError, sqlite3.OperationalError, sqlite3.IntegrityError) as e:
                     msg = "Alter Table Error: {0}\n {1}".format(str(e), sql)
-                    self.logger.debug(msg)
-                    pass
+                    self.logger.warning(msg)
         return altered
 
-    def __clean_msg_keys(self, msg):
-        # Remove bad key chars from the msg
+    def _is_key_sqlable(self, char):
+        rtn = False
+        c = ord(char)
+        if ((c >= 65) and (c <= 90)) or ((c >= 97) and (c <= 122)):
+            rtn = char
+        return rtn
+ 
+    def _is_value_sqlable(self, char):
+        rtn = False
+        c = ord(char)
+        if (c >= 40) and (c <= 122):
+            rtn = char
+        return rtn
+
+    def __clean_msg_data(self, msg):
+        # Remove chars that upset sql from the values and keys
         data = {}
-        for key in msg:
-            k = bytes(key, 'ascii').decode('ascii', 'ignore')
-            k = k.replace('#', '').replace('%', '')
-            k = k.replace("'", '').replace('"', '')
-            k = k.replace('$', '').replace('!', '')
-            k = k.replace('&', '').replace('*', '')
-            k = k.replace('\\u', '').strip().rstrip()
-            if (len(k) < 1) or ('\\u' in k) or (k ==''):
-                raise ValueError("Badly formed Key. Not able to create column name")
-            try:
-                k = int(k)
-            except ValueError as e:
-                if 'invalid literal for int' not in str(e):
-                    raise ValueError(str(e))
-            data[k] = msg[key]
-            if msg[key] is None:
-                data[k] = ''
-            if type(msg[key]) == str:
-                data[k] = bytes(msg[key], 'ascii').decode('ascii', 'ignore').strip().rstrip()
+        for k, v in msg.items():
+            value = v
+            key = "".join(i for i in k if self._is_key_sqlable(i))
+            if isinstance(v, str):
+                value = "".join(i for i in v if self._is_value_sqlable(i))
+
+            if len(key) < 1:
+                raise ValueError('Not able to make column name out of data')
+
+            data[key] = value
         return data
 
     def save(self, tablename, msg):
@@ -148,8 +148,10 @@ class Sql(object):
         # Once the checks have been done insert the data
         data = {}
         try:
-            data = self.__clean_msg_keys(msg)
+            data = self.__clean_msg_data(msg)
         except ValueError:
+            return
+        if len(data) < 1:
             return
 
         table = self._tables.get(tablename)
@@ -187,6 +189,5 @@ class Sql(object):
             self.con.commit()
         except (ValueError, sqlite3.IntegrityError, sqlite3.OperationalError) as e:
             msg = "Insert row Error: {0}\n {1}".format(str(e), sql)
-            self.logger.debug(msg)
-            pass
-        self.logger.info("{0} data saved".format(tablename))
+            self.logger.warning(msg)
+        self.logger.debug("{0} data saved".format(tablename))

@@ -35,10 +35,13 @@ class Jfts(object):
                         pass
         if len(rows) < 1:
             raise Exception('Could load any json data. Check data structures in files')
+
         self.rows = sorted(rows, key=lambda item: item[self.use_ts_field])
+        print("Loaded {0} files with {1} entries".format(
+            len(filenames), len(self.rows)
+        ))
 
     def save(self):
-        print(len(self.rows))
         with self.database:
             # print("{0}:{1}".format(row.get('_ts'), row.get('time')))
             for i, row in enumerate(self.rows):
@@ -48,4 +51,8 @@ class Jfts(object):
                 if self.add_to_row is not None:
                     split = self.add_to_row.split(':')
                     row[split[0]] = split[1]
+                if not i % 1000:
+                    print('Processed {0} out of {1} rows {2} % done'.format(
+                        i, len(self.rows), round((i / len(self.rows) * 100), 2)
+                    ))
                 self.database.save(self.tablename, row)
