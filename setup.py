@@ -18,7 +18,8 @@ setup(
     keywords='mqtt sqlite',
     entry_points={'console_scripts': [
         'mjs=mjs.cli:start',
-        'jfts=mjs.cli:filestosql'
+        'jfts=mjs.cli:filestosql',
+        'extracttable=mjs.cli:extracttable'
     ]},
     include_package_data=True,
     description='Store mqtt message into a sqlite database',

@@ -1,5 +1,6 @@
 from mjs.mqtt import Mqtt
 from mjs.jfts import Jfts
+from mjs.extracttable import ExtractTable
 
 
 def start():
@@ -32,3 +33,16 @@ def filestosql():
     jfts = Jfts()
     jfts.load()
     jfts.save()
+
+
+def extracttable():
+    # Example CLI arguments ...
+    # join
+    #   from_db "./path/from.db"
+    #   from_table from_table_name
+    #   to_db "./path/to.db"
+    #   loglevel debug
+    #   logtocon true
+    et = ExtractTable()
+    et.read()
+    et.write()
