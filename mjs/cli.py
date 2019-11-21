@@ -1,6 +1,6 @@
 from mjs.mqtt import Mqtt
 from mjs.jfts import Jfts
-from mjs.extracttable import ExtractTable
+from mjs.dbtables import DbTables
 
 
 def start():
@@ -43,6 +43,17 @@ def extracttable():
     #   to_db "./path/to.db"
     #   loglevel debug
     #   logtocon true
-    et = ExtractTable()
-    et.read()
-    et.write()
+    dt = DbTables()
+    dt.extract()
+
+
+def appendtable():
+    # Example CLI arguments ...
+    # join
+    #   from_db "./path/from.db"
+    #   from_table from_table_name
+    #   to_db "./path/to.db"
+    #   loglevel debug
+    #   logtocon true
+    dt = DbTables()
+    dt.append()

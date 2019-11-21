@@ -119,7 +119,7 @@ class Sql(object):
         if ((c >= 65) and (c <= 90)) or ((c >= 97) and (c <= 122)):
             rtn = char
         return rtn
- 
+
     def _is_value_sqlable(self, char):
         rtn = False
         c = ord(char)
@@ -140,18 +140,21 @@ class Sql(object):
                 raise ValueError('Not able to make column name out of data')
 
             data[key] = value
+
+        if len(data) < 1:
+            raise ValueError('Insufficient data passed')
+
         return data
 
     def save(self, tablename, msg):
         # Check the table exists. If not create it
         # If it does check to see if it needs altering
         # Once the checks have been done insert the data
-        data = {}
+        if not isinstance(msg, dict):
+            raise ValueError('Invalid data passed to be saved. Data must be a dict')
         try:
             data = self.__clean_msg_data(msg)
         except ValueError:
-            return
-        if len(data) < 1:
             return
 
         table = self._tables.get(tablename)

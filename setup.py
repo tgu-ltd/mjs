@@ -20,6 +20,7 @@ setup(
         'mjs=mjs.cli:start',
         'jfts=mjs.cli:filestosql',
         'extracttable=mjs.cli:extracttable'
+        'appendtable=mjs.cli:appendtable'
     ]},
     include_package_data=True,
     description='Store mqtt message into a sqlite database',

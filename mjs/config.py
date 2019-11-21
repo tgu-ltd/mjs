@@ -58,8 +58,7 @@ class Config(object):
     def __load_kwargs(self, **kwargs):
         ''' Set config options set via intialization '''
         for arg in kwargs:
-            if arg in self.config:
-                self.config[arg] = kwargs.get(arg)
+            self.config[arg] = kwargs.get(arg)
 
     def __load_cli(self):
         ''' Overwrite config options passed on the CLI '''

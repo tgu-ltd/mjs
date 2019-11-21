@@ -25,7 +25,7 @@ def run_sql(dbc, sql):
     return results
 
 
-def test_non_json_messages(mjs, dbc):
+def test_non_json_messages_are_not_saved(mjs, dbc):
     value = 1
     col = 'no_json'
     sql_error = False
