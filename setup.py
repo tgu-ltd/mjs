@@ -19,7 +19,7 @@ setup(
     entry_points={'console_scripts': [
         'mjs=mjs.cli:start',
         'jfts=mjs.cli:filestosql',
-        'extracttable=mjs.cli:extracttable'
+        'extracttable=mjs.cli:extracttable',
         'appendtable=mjs.cli:appendtable'
     ]},
     include_package_data=True,

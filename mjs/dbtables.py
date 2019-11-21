@@ -18,6 +18,7 @@ class DbTables(object):
         self.to_table = config.get('to_table', None)
         self.from_table = config.get('from_table', None)
         rm_to_db = config.get('rm_to_db', False)
+
         if self.to_table is None:
             self.to_table = self.from_table
         if rm_to_db:
