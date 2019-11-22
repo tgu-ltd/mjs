@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     zip_safe=False,
     name='mjs',
-    version='0.0.1',
+    version='0.3',
     url='https://github.com/tgu-ltd/mjs',
     author_email='dev@tgu-ltd.uk',
     author='tgu-ltd',
