@@ -37,20 +37,10 @@
                 "sha256:cc8da25076a1fe56c3ac63671e2194458e0c4d9c7becfd52ca251650d517903c",
                 "sha256:e78e426105ac07026ba098f04de8abe9b6e3e98b5befbf89b51a5ef0a4292b03"
             ],
-<<<<<<< HEAD
-            "index": "pypi",
-=======
->>>>>>> Updated Pipfile.lock
             "version": "==3.1.4"
         },
         "certifi": {
             "hashes": [
-<<<<<<< HEAD
-                "sha256:017c25db2a153ce562900032d5bc68e9f191e44e9a0f762f373977de9df1fbb3",
-                "sha256:25b64c7da4cd7479594d035c08c2d809eb4aab3a26e5a990ea98cc450c320f1f"
-            ],
-            "version": "==2019.11.28"
-=======
                 "sha256:1d987a998c75633c40847cc966fcf5904906c920a7f17ef374f5aa4282abd304",
                 "sha256:51fcb31174be6e6664c5f69e3e1691a2d72a1a12e90f872cbdb1567eb47b6519"
             ],
@@ -88,7 +78,6 @@
                 "sha256:f2b0fa0c01d8a0c7483afd9f31d7ecf2d71760ca24499c8697aeb5ca37dc090c"
             ],
             "version": "==1.14.0"
->>>>>>> Updated Pipfile.lock
         },
         "chardet": {
             "hashes": [
@@ -104,14 +93,6 @@
             ],
             "version": "==7.1.1"
         },
-<<<<<<< HEAD
-        "colorama": {
-            "hashes": [
-                "sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff",
-                "sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"
-            ],
-            "version": "==0.4.3"
-=======
         "click-log": {
             "hashes": [
                 "sha256:16fd1ca3fc6b16c98cea63acf1ab474ea8e676849dc669d86afafb0ed7003124",
@@ -142,7 +123,6 @@
                 "sha256:f118a95c7480f5be0df8afeb9a11bd199aa20afab7a96bcf20409b411a3a85f0"
             ],
             "version": "==2.9.2"
->>>>>>> Updated Pipfile.lock
         },
         "distlib": {
             "hashes": [
@@ -164,21 +144,6 @@
             ],
             "version": "==3.0.12"
         },
-<<<<<<< HEAD
-        "gitdb2": {
-            "hashes": [
-                "sha256:1b6df1433567a51a4a9c1a5a0de977aa351a405cc56d7d35f3388bad1f630350",
-                "sha256:96bbb507d765a7f51eb802554a9cfe194a174582f772e0d89f4e87288c288b7b"
-            ],
-            "version": "==2.0.6"
-        },
-        "gitpython": {
-            "hashes": [
-                "sha256:23b4de99c5fc1564701301cead04e16aa3e47019034668327206d1b52e1e54f7",
-                "sha256:838c38d882a97b2fd146dbd4eb9baaf857cb65ebaa64e4c06fca48aaa491e1c6"
-            ],
-            "version": "==2.1.15"
-=======
         "gitdb": {
             "hashes": [
                 "sha256:6f0ecd46f99bb4874e5678d628c3a198e2b4ef38daea2756a2bfd8df7dd5c1a5",
@@ -192,7 +157,6 @@
                 "sha256:71b8dad7409efbdae4930f2b0b646aaeccce292484ffa0bc74f1195582578b3d"
             ],
             "version": "==3.1.1"
->>>>>>> Updated Pipfile.lock
         },
         "idna": {
             "hashes": [
@@ -207,7 +171,7 @@
                 "sha256:34513a8a0c4962bc66d35b359558fd8a5e10cd472d37aec5f66858addef32c1e"
             ],
             "markers": "python_version < '3.8'",
-            "version": "==0.23"
+            "version": "==1.6.0"
         },
         "importlib-resources": {
             "hashes": [
@@ -219,19 +183,6 @@
         },
         "invoke": {
             "hashes": [
-<<<<<<< HEAD
-                "sha256:11c0f24253932839307c26c196312238627479e07d4561f773261a445dd650b9",
-                "sha256:24b8d0b5e0bb85dbb0c9eae2101bd6498f835ff26aaeab3a140cfcbf11f7f449"
-            ],
-            "version": "==0.11.1"
-        },
-        "ndebug": {
-            "hashes": [
-                "sha256:6bbaa5f88216959eb4fcb75ec4344ff3d01e13c73f771258ee283a07c9864013",
-                "sha256:cc286b22d983e4e05dab3485852c5d0bc642689d246591be4284b3cd5ef2896e"
-            ],
-            "version": "==0.1.1"
-=======
                 "sha256:87b3ef9d72a1667e104f89b159eaf8a514dbf2f3576885b2bbdefe74c3fb2132",
                 "sha256:93e12876d88130c8e0d7fd6618dd5387d6b36da55ad541481dfa5e001656f134",
                 "sha256:de3f23bfe669e3db1085789fd859eb8ca8e0c5d9c20811e2407fa042e8a5e15d"
@@ -252,7 +203,6 @@
                 "sha256:8179b1cdcdcbc221456b5b74e6b7cfa06f8dd9f239eb81892166d9223d82c5ba"
             ],
             "version": "==21.2.0"
->>>>>>> Updated Pipfile.lock
         },
         "packaging": {
             "hashes": [
@@ -282,8 +232,6 @@
             ],
             "version": "==1.8.1"
         },
-<<<<<<< HEAD
-=======
         "pycparser": {
             "hashes": [
                 "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0",
@@ -291,7 +239,6 @@
             ],
             "version": "==2.20"
         },
->>>>>>> Updated Pipfile.lock
         "pygments": {
             "hashes": [
                 "sha256:647344a061c249a3b74e230c739f434d7ea4d8b1d5f3721bc0f3558049b38f44",
@@ -301,34 +248,6 @@
         },
         "pyparsing": {
             "hashes": [
-<<<<<<< HEAD
-                "sha256:4c830582a84fb022400b85429791bc551f1f4871c33f23e44f353119e92f969f",
-                "sha256:c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec"
-            ],
-            "version": "==2.4.6"
-        },
-        "python-gitlab": {
-            "hashes": [
-                "sha256:afb1abb666daa979518393bc10269b96aa1b59ec7a80a756e793f8ab946e5d87",
-                "sha256:c4e91b9367c54c3049d702c35dd966f9e5a8989dae1be56ef7a1c35c2b235a58"
-            ],
-            "version": "==1.10.0"
-        },
-        "python-semantic-release": {
-            "hashes": [
-                "sha256:c508102ae8770bb7eb59359c38f5b07565f80772168ada7206339597f4790a4d",
-                "sha256:d48d31c5e5cf7d3d7895e1de51b3a1b4200a2184a9d9201bb1e63989fddb003d"
-            ],
-            "index": "pypi",
-            "version": "==4.3.3"
-        },
-        "readme-renderer": {
-            "hashes": [
-                "sha256:1b6d8dd1673a0b293766b4106af766b6eff3654605f9c4f239e65de6076bc222",
-                "sha256:e67d64242f0174a63c3b727801a2fff4c1f38ebe5d71d95ff7ece081945a6cd4"
-            ],
-            "version": "==25.0"
-=======
                 "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1",
                 "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"
             ],
@@ -355,7 +274,6 @@
                 "sha256:cc4957a803106e820d05d14f71033092537a22daa4f406dfbdd61177e0936376"
             ],
             "version": "==26.0"
->>>>>>> Updated Pipfile.lock
         },
         "requests": {
             "hashes": [
@@ -395,24 +313,10 @@
         },
         "smmap": {
             "hashes": [
-<<<<<<< HEAD
-                "sha256:171484fe62793e3626c8b05dd752eb2ca01854b0c55a1efc0dc4210fccb65446",
-                "sha256:5fead614cf2de17ee0707a8c6a5f2aa5a2fc6c698c70993ba42f515485ffda78"
-            ],
-            "version": "==3.0.1"
-        },
-        "smmap2": {
-            "hashes": [
-                "sha256:0cb6ea470b1ad9a65a02ca7f4c7ae601861f7dd24a43812ca51cfca2892bb524",
-                "sha256:44cc8bdaf96442dbb9a8e2e14377d074b3d0eea292eee3c95c8c449b6c92c557"
-            ],
-            "version": "==3.0.1"
-=======
                 "sha256:52ea78b3e708d2c2b0cfe93b6fc3fbeec53db913345c26be6ed84c11ed8bebc1",
                 "sha256:b46d3fc69ba5f367df96d91f8271e8ad667a198d5a28e215a6c3d9acd133a911"
             ],
             "version": "==3.0.2"
->>>>>>> Updated Pipfile.lock
         },
         "toml": {
             "hashes": [
@@ -423,42 +327,6 @@
         },
         "tox": {
             "hashes": [
-<<<<<<< HEAD
-                "sha256:1d1368ac86e8332f79e2bcef9fefe2b077469f08449eadf0183759b34f3b2070",
-                "sha256:bcfa3e40abc1e9b70607b56adfd976fe7dc8286ad56aab44e3151daca7d2d0d0"
-            ],
-            "index": "pypi",
-            "version": "==3.14.1"
-        },
-        "tqdm": {
-            "hashes": [
-                "sha256:03d2366c64d44c7f61e74c700d9b202d57e9efe355ea5c28814c52bfe7a50b8c",
-                "sha256:be5ddeec77d78ba781ea41eacb2358a77f74cc2407f54b82222d7ee7dc8c8ccf"
-            ],
-            "version": "==4.44.1"
-        },
-        "twine": {
-            "hashes": [
-                "sha256:630fadd6e342e725930be6c696537e3f9ccc54331742b16245dab292a17d0460",
-                "sha256:a3d22aab467b4682a22de4a422632e79d07eebd07ff2a7079effb13f8a693787"
-            ],
-            "index": "pypi",
-            "version": "==1.15.0"
-        },
-        "urllib3": {
-            "hashes": [
-                "sha256:2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc",
-                "sha256:87716c2d2a7121198ebcb7ce7cccf6ce5e9ba539041cfbaeecfb641dc0bf6acc"
-            ],
-            "version": "==1.25.8"
-        },
-        "virtualenv": {
-            "hashes": [
-                "sha256:4e399f48c6b71228bf79f5febd27e3bbb753d9d5905776a86667bc61ab628a25",
-                "sha256:9e81279f4a9d16d1c0654a127c2c86e5bca2073585341691882c1e66e31ef8a5"
-            ],
-            "version": "==20.0.15"
-=======
                 "sha256:a4a6689045d93c208d77230853b28058b7513f5123647b67bf012f82fa168303",
                 "sha256:b2c4b91c975ea5c11463d9ca00bebf82654439c5df0f614807b9bdec62cc9471"
             ],
@@ -493,7 +361,6 @@
                 "sha256:ac53ade75ca189bc97b6c1d9ec0f1a50efe33cbf178ae09452dcd9fd309013c1"
             ],
             "version": "==20.0.18"
->>>>>>> Updated Pipfile.lock
         },
         "webencodings": {
             "hashes": [
@@ -504,19 +371,11 @@
         },
         "wheel": {
             "hashes": [
-<<<<<<< HEAD
-                "sha256:10c9da68765315ed98850f8e048347c3eb06dd81822dc2ab1d4fde9dc9702646",
-                "sha256:f4da1763d3becf2e2cd92a14a7c920f0f00eca30fdde9ea992c836685b9faf28"
-            ],
-            "index": "pypi",
-            "version": "==0.33.6"
-=======
                 "sha256:8788e9155fe14f54164c1b9eb0a319d98ef02c160725587ad60f14ddc57b6f96",
                 "sha256:df277cb51e61359aba502208d680f90c0493adec6f0e848af94948778aed386e"
             ],
             "index": "pypi",
             "version": "==0.34.2"
->>>>>>> Updated Pipfile.lock
         },
         "zipp": {
             "hashes": [
