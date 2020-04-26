@@ -72,6 +72,7 @@ sqlite> select _ts, V, VPV, VPV_min, VPV_max from solar where VPV > 79;
 
 
 ## Testing
+To test the mosquitto package must be installed on the system
 ```bash 
 ~$ python setup.py test
 ```
